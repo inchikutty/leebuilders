@@ -22,7 +22,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'leebuilders.czckjvky6tmd.us-west-2.rds.amazonaws.com',
+			'host'      => 'lee.czckjvky6tmd.us-west-2.rds.amazonaws.com',
 			'database'  => 'leebuilders',
 			'username'  => 'leebuilders',
 			'password'  => 'enchackal',
