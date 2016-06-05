@@ -22,10 +22,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => 'leebuilders.czckjvky6tmd.us-west-2.rds.amazonaws.com',
 			'database'  => 'leebuilders',
 			'username'  => 'leebuilders',
-			'password'  => '',
+			'password'  => 'enchackal',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
