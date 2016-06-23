@@ -161,6 +161,7 @@ class HomeController extends BaseController {
 	}
 
 	public function modifyMustRoll($id){
+		return Response::json("must roll modified", 200);
 	}
 	public function viewMustRoll($id){
 		$mustroll = [];
