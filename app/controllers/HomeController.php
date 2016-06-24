@@ -20,14 +20,21 @@ class HomeController extends BaseController {
 		return View::make('hello');
 	}
 
-	/*
-	public function register( $username, $password, $firstname, $lastname, $role){
 
+	public function register( $username, $password, $name, $role){
+
+		return Response::json("user added", 200);
 	}
+
 	public function login($username, $password){
-
+		if(($username == "lee123") && ($password=="build456")){
+			return Response::json("user logged in", 200);
+		}
+		else{
+			return Response::json("Invalid", 200);
+		}
 	}
-	*/
+
 	public function createMustRoll( $mustroll ){
 		$roll = json_decode($mustroll);
 		$roll = $roll[0];

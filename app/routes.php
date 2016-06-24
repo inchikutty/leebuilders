@@ -12,6 +12,8 @@
 */
 
 Route::get('/', function(){ return View::make('hello'); });
+Route::post('/api/v1/users/login/{un}/{pw}', ['uses' => 'HomeController@login']);
+Route::post('/api/v1/users/register/{un}/{pw}/{name}/{role}', ['uses' => 'HomeController@register']);
 //Mustroll APIs
 Route::post('/api/v1/mustrolls/add/{mustroll}',[ 'uses' => 'HomeController@createMustRoll']);
 Route::post('/api/v1/mustrolls/view/{id}',[ 'uses' => 'HomeController@viewMustRoll']);
