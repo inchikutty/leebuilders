@@ -48,7 +48,8 @@ class HomeController extends BaseController {
     $time = $datetime->format('H:i:s A');
 		$main_id =null;
 
-		$main_id = DB::table('mustroll_main')->insertGetId([
+		$main_id = DB::table('mustroll_main')->insertGetId(
+		 array(
 		    'date' => $roll->main->date,
 		    'created_date' => $date,
 		    'created_time' => $time,
@@ -59,7 +60,8 @@ class HomeController extends BaseController {
 				'cash_office'=> $roll->main->cash_office,
 				'cash_needed' => $roll->main->cash_needed,
 				'cash_in_hand' => $roll->main->cash_in_hand
-		]);
+		)
+	);
 
 					if(isset($main_id) && ( $main_id > 0 )){
 					/*	$humanId = [];
