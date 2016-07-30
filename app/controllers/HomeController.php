@@ -64,7 +64,6 @@ class HomeController extends BaseController {
 	);
 
 					if(isset($main_id) && ( $main_id > 0 )){
-					/*	$humanId = [];
 
 						foreach ($roll->human as $key => $human) {
 							$dataHuman[] = array(
@@ -83,6 +82,7 @@ class HomeController extends BaseController {
 				    DB::table('mustrolls_human')->insert($dataHuman);
 
 
+/*
 						foreach ($humanId as $id) {
 							$count = DB::table('mustrolls_human')
 							 ->where('id', '=',  $id)
