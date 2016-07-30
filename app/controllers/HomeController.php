@@ -48,8 +48,7 @@ class HomeController extends BaseController {
     $time = $datetime->format('H:i:s A');
 		$main_id =null;
 
-		$main_id = DB::table('mustroll_main')->insertGetId(
-		  array(
+		$main_id = DB::table('mustroll_main')->insertGetId([
 		    'date' => $roll->main->date,
 		    'created_date' => $date,
 		    'created_time' => $time,
@@ -60,11 +59,10 @@ class HomeController extends BaseController {
 				'cash_office'=> $roll->main->cash_office,
 				'cash_needed' => $roll->main->cash_needed,
 				'cash_in_hand' => $roll->main->cash_in_hand
-			)
-		);
+		]);
 
 					if(isset($main_id) && ( $main_id > 0 )){
-						$humanId = [];
+					/*	$humanId = [];
 
 						foreach ($roll->human as $key => $human) {
 							$dataHuman[] = array(
@@ -82,7 +80,6 @@ class HomeController extends BaseController {
 				    }
 				    DB::table('mustrolls_human')->insert($dataHuman);
 
-/*
 
 						foreach ($humanId as $id) {
 							$count = DB::table('mustrolls_human')
@@ -97,7 +94,7 @@ class HomeController extends BaseController {
 								 ]);
 							 }
 						}*/
-
+/*
 						 foreach ($roll->rented as $rented) {
 							 if($rented->rented_equipment != ""){
 								 $insertRented[] = array(
@@ -155,7 +152,7 @@ class HomeController extends BaseController {
 						 }
 					  }
 						DB::table('mustrolls_purchase')->insert($dataMisc);
-
+*/
 						return Response::json($main_id, 200);
 
 					}
