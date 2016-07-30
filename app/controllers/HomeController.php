@@ -26,6 +26,7 @@ class HomeController extends BaseController {
 		return Response::json("user added", 200);
 	}
 
+//completed w.r.t lee123 user
 	public function login($username, $password){
 		if(($username == "lee123") && ($password=="build456")){
 			return Response::json("user logged in", 200);
@@ -55,20 +56,45 @@ class HomeController extends BaseController {
 		    'site_id' => $roll->main->site_name,
 		    'total_expense' => $roll->main->total_expense,
 		    'site_incharge' => $roll->main->site_incharge,
-		    'reporter' => $roll->main->reporter
+		    'reporter' => $roll->main->reporter,
+				'cash_office'=> $roll->main->cash_office,
+				'cash_balance' => $roll->main->cash_balance,
+				'cash_needed' => $roll->main->cash_needed,
+				'cash_in_hand' => $roll->main->cash_in_hand
 			)
 		);
 
 					if(isset($main_id) && ( $main_id > 0 )){
+						$dataHuman = [];
+						$humanId = [];
 
-						DB::table('mustrolls_human')->insert([
-							'mustrolls_main_id' => $main_id,
-							'number_of_workers' => $roll->human->number_of_workers,
-							'total_wage' => $roll->human->total_wage,
-							'wageHr' => $roll->human->wageHr,
-							'workHr' =>$roll->human->workHr,
-							'wage_per_person' => $roll->human->wage_per_person
-						]);
+						foreach ($roll->human as $key => $human) {
+							$humanId[$key] = DB::table('mustrolls_human')->insertGetId([
+								'mustrolls_main_id' => $main_id,
+								'number_of_workers' => $human->number_of_workers,
+								'total_wage' => $human->total_wage,
+								'wageHr' => $human->wageHr,
+								'workHr' =>$human->workHr,
+								'wage_per_person' => $human->wage_per_person,
+								'contractor' => $human->contractor,
+								'skill' => $human->skill,
+								'language' =>$human->language,
+								'number_of_OT'=>$human->ot_number
+							]);
+						}
+						/*foreach ($humanId as $id) {
+							$count = DB::table('mustrolls_human')
+							 ->where('id', '=',  $id)
+							 ->first();
+							 for ($x = 0; $x <= $count->number_of_OT; $x++) {
+								 DB::table('human_overtime')->insert([
+									 'mustrolls_main_id' => $main_id,
+									 'mustrolls_human_id' => $id,
+									 'wrkr_id' => $roll->human
+
+								 ]);
+							 }
+						}*/
 
              $dataRented =[];
 						 foreach ($roll->rented as $rented) {
@@ -177,7 +203,7 @@ class HomeController extends BaseController {
 					->first();
 		$mustroll['human']= DB::table('mustrolls_human')
 								->where('mustrolls_main_id', '=',  $id)
-								->first();
+								->get();
 		$mustroll['owned']= DB::table('mustrolls_owned')
 						->where('mustrolls_main_id', '=',  $id)
 						->get();
