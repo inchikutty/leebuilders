@@ -65,11 +65,10 @@ class HomeController extends BaseController {
 		);
 
 					if(isset($main_id) && ( $main_id > 0 )){
-						$dataHuman = [];
 						$humanId = [];
 
 						foreach ($roll->human as $key => $human) {
-							$humanId[$key] = DB::table('mustrolls_human')->insertGetId([
+							$dataHuman[] = array(
 								'mustrolls_main_id' => $main_id,
 								'number_of_workers' => $human->number_of_workers,
 								'total_wage' => $human->total_wage,
@@ -80,9 +79,13 @@ class HomeController extends BaseController {
 								'skill' => $human->skill,
 								'language' =>$human->language,
 								'number_of_OT'=>$human->ot_number
-							]);
-						}
-						/*foreach ($humanId as $id) {
+							);
+				    }
+				    DB::table('mustrolls_human')->insert($dataHuman);
+
+/*
+
+						foreach ($humanId as $id) {
 							$count = DB::table('mustrolls_human')
 							 ->where('id', '=',  $id)
 							 ->first();
@@ -96,11 +99,9 @@ class HomeController extends BaseController {
 							 }
 						}*/
 
-             $dataRented =[];
 						 foreach ($roll->rented as $rented) {
 							 if($rented->rented_equipment != ""){
-
-							  $dataRented[]= [
+								 $insertRented[] = array(
 								  'mustrolls_main_id'=> $main_id,
 								  'rented_equipment'=> $rented->rented_equipment,
 								  'make'=> $rented->make,
@@ -110,15 +111,14 @@ class HomeController extends BaseController {
 								  'count'=> $rented->count,
 								  'rent_per_unit_for_day'=> $rented->rent_per_unit_for_day,
 								  'total_rent'=> $rented->total_rent
-							  ];
+							  );
 						  }
-					 }
-					 DB::table('mustrolls_rented')->insert($dataRented);
+					   }
+					   DB::table('mustrolls_rented')->insert($insertRented);
 
-           $dataSet = [];
 						foreach ($roll->owned as $owned) {
 							if($owned->equipment != ""){
-								$dataSet[] = [
+								$dataOwned [] = array(
 										'mustrolls_main_id'=> $main_id,
 										'equipment'=> $owned->equipment,
 										'owned_equip_id' =>'0',
@@ -127,39 +127,35 @@ class HomeController extends BaseController {
 										'count' => $owned->count,
 										'condition' => $owned->condition,
 									  'maintenance_amount' => $owned->maintenance_amount
-                ];
+                );
               }
 						}
-						DB::table('mustrolls_owned')->insert($dataSet);
+						DB::table('mustrolls_owned')->insert($dataOwned);
 
-						$dataPurchase = [];
 						foreach ($roll->purchase as $purchase) {
 							if($purchase->item != ""){
-								$dataPurchase[] = [
+							$dataPurchase[] = array(
 										'mustrolls_main_id'=> $main_id,
 										'item'=> $purchase->item,
 										'unit'=> $purchase->unit,
 										'count'=> $purchase->count,
 										'price_per_unit'=> $purchase->price_per_unit ,
 										'total_price'=> $purchase->total_price
-								];
+							);
 						 }
-
 						}
 						DB::table('mustrolls_purchase')->insert($dataPurchase);
 
-
-						$dataMisc =[];
 						foreach ($roll->misc as $misc) {
 							if($misc->comment != ""){
-								$dataMisc[] = [
+							$dataMisc[] = array(
 									'mustrolls_main_id'=> $main_id,
 									'comment'=> $misc->comment,
 									'amount'=> $misc->amount
-							 ];
+							 );
 						 }
 					  }
-					  DB::table('mustrolls_misc')->insert($dataMisc);
+						DB::table('mustrolls_purchase')->insert($dataMisc);
 
 						return Response::json($main_id, 200);
 
@@ -257,7 +253,7 @@ class HomeController extends BaseController {
 	public function getProjects(){
 
 	}
-	public function addSite(){
+	public function addSite($site){
 
 
 	}
