@@ -58,7 +58,6 @@ class HomeController extends BaseController {
 		    'site_incharge' => $roll->main->site_incharge,
 		    'reporter' => $roll->main->reporter,
 				'cash_office'=> $roll->main->cash_office,
-				'cash_balance' => $roll->main->cash_balance,
 				'cash_needed' => $roll->main->cash_needed,
 				'cash_in_hand' => $roll->main->cash_in_hand
 			)
@@ -192,6 +191,7 @@ class HomeController extends BaseController {
 	public function modifyMustRoll($id){
 		return Response::json("must roll modified", 200);
 	}
+
 	public function viewMustRoll($id){
 		$mustroll = [];
 		$mustroll['main'] = DB::table('mustroll_main')
@@ -215,6 +215,7 @@ class HomeController extends BaseController {
 			return Response::json($mustroll, 200);
 
 	}
+
 	public function getAllMustRolls(){
 		$mustrolls = DB::table('mustroll_main')
 					->get();
