@@ -83,7 +83,7 @@ class HomeController extends BaseController {
 							}
 				    }
 
-				    DB::table('mustrolls_human')->insert($dataHuman);
+				    //DB::table('mustrolls_human')->insert($dataHuman);
 
 
 
@@ -161,7 +161,7 @@ class HomeController extends BaseController {
 						DB::table('mustrolls_purchase')->insert($dataMisc);
 */
 
-						return Response::json($main_id, 200);
+						return Response::json($dataHuman, 200);
 
 					}
 					else{
