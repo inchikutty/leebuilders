@@ -65,6 +65,11 @@ class HomeController extends BaseController {
 
 					if(isset($main_id) && ( $main_id > 0 )){
 						$dataHuman = [];
+						$insertRented = [];
+						$dataOwned = [];
+						$dataPurchase = [];
+						$dataMisc = [];
+
 						foreach ($roll->human as $human) {
 							if($human->contractor != ""){
 							  $dataHuman[] = array(
@@ -83,9 +88,7 @@ class HomeController extends BaseController {
 				    }
 				    DB::table('mustrolls_human')->insert($dataHuman);
 
-
-
-/*
+					/*
 						foreach ($humanId as $id) {
 							$count = DB::table('mustrolls_human')
 							 ->where('id', '=',  $id)
@@ -98,9 +101,9 @@ class HomeController extends BaseController {
 
 								 ]);
 							 }
-						}*/
+						}
+				*/
 
-						 /*
 						 foreach ($roll->rented as $rented) {
 							 if($rented->rented_equipment != ""){
 								 $insertRented[] = array(
@@ -158,7 +161,6 @@ class HomeController extends BaseController {
 						 }
 					  }
 						DB::table('mustrolls_purchase')->insert($dataMisc);
-*/
 
 						return Response::json($main_id, 200);
 
