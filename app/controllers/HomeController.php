@@ -65,21 +65,21 @@ class HomeController extends BaseController {
 
 					if(isset($main_id) && ( $main_id > 0 )){
 
-						$dataHuman = [];
-						foreach ($roll->human as $key => $human) {
+						$dataHuman = array();
+						foreach ($roll->human as $human) {
 							if($human->contractor !=""){
-							$dataHuman[] = [
-									'mustrolls_main_id' => $main_id,
-									'number_of_workers' => $human->number_of_workers,
-									'total_wage' => $human->total_wage,
-									'wageHr' => $human->wageHr,
-									'workHr' =>$human->workHr,
-									'wage_per_person' => $human->wage_per_person,
-									'contractor' => $human->contractor,
-									'skill' => $human->skill,
-									'language' =>$human->language,
-									'number_of_OT'=>$human->ot_number
-								];
+							$dataHuman[] = array(
+									"mustrolls_main_id" => $main_id,
+									"number_of_workers" => $human->number_of_workers,
+									"total_wage" => $human->total_wage,
+									"wageHr" => $human->wageHr,
+									"workHr" => $human->workHr,
+									"wage_per_person" => $human->wage_per_person,
+									"contractor" => $human->contractor,
+									"skill" => $human->skill,
+									"language" => $human->language,
+									"number_of_OT" => $human->ot_number
+								);
 							}
 				    }
 
@@ -102,7 +102,8 @@ class HomeController extends BaseController {
 							 }
 						}*/
 
-						 /*foreach ($roll->rented as $rented) {
+						 /*
+						 foreach ($roll->rented as $rented) {
 							 if($rented->rented_equipment != ""){
 								 $insertRented[] = array(
 								  'mustrolls_main_id'=> $main_id,
