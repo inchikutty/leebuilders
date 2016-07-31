@@ -119,7 +119,7 @@ class HomeController extends BaseController {
 						  }
 					   }
 					   DB::table('mustrolls_rented')->insert($insertRented);
-/*
+
 						foreach ($roll->owned as $owned) {
 							if($owned->equipment != ""){
 								$dataOwned [] = array(
@@ -160,7 +160,7 @@ class HomeController extends BaseController {
 						 }
 					  }
 						DB::table('mustrolls_misc')->insert($dataMisc);
-*/
+
 
 						return Response::json($main_id, 200);
 
