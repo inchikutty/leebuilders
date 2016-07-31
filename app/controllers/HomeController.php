@@ -98,7 +98,6 @@ class HomeController extends BaseController {
 									 'mustrolls_main_id' => $main_id,
 									 'mustrolls_human_id' => $id,
 									 'wrkr_id' => $roll->human
-
 								 ]);
 							 }
 						}
@@ -160,7 +159,7 @@ class HomeController extends BaseController {
 							 );
 						 }
 					  }
-						DB::table('mustrolls_purchase')->insert($dataMisc);
+						DB::table('mustrolls_misc')->insert($dataMisc);
 
 						return Response::json($main_id, 200);
 
