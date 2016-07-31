@@ -65,24 +65,26 @@ class HomeController extends BaseController {
 
 					if(isset($main_id) && ( $main_id > 0 )){
 
-							/*$dataHuman = array();
+						$dataHuman = [];
 						foreach ($roll->human as $key => $human) {
-							$dataHuman[] = array(
-								'mustrolls_main_id' => $main_id,
-								'number_of_workers' => $human->number_of_workers,
-								'total_wage' => $human->total_wage,
-								'wageHr' => $human->wageHr,
-								'workHr' =>$human->workHr,
-								'wage_per_person' => $human->wage_per_person,
-								'contractor' => $human->contractor,
-								'skill' => $human->skill,
-								'language' =>$human->language,
-								'number_of_OT'=>$human->ot_number
-							);
+							if($human->contractor !=""){
+								$dataHuman[] = [
+									'mustrolls_main_id' => $main_id,
+									'number_of_workers' => $human->number_of_workers,
+									'total_wage' => $human->total_wage,
+									'wageHr' => $human->wageHr,
+									'workHr' =>$human->workHr,
+									'wage_per_person' => $human->wage_per_person,
+									'contractor' => $human->contractor,
+									'skill' => $human->skill,
+									'language' =>$human->language,
+									'number_of_OT'=>$human->ot_number
+								];
+							}
 				    }
 
 				    DB::table('mustrolls_human')->insert($dataHuman);
-						*/
+
 
 
 /*
@@ -159,7 +161,7 @@ class HomeController extends BaseController {
 						DB::table('mustrolls_purchase')->insert($dataMisc);
 */
 
-						return Response::json($roll, 200);
+						return Response::json($main_id, 200);
 
 					}
 					else{
