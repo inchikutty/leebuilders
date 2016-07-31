@@ -64,26 +64,36 @@ class HomeController extends BaseController {
 	);
 
 					if(isset($main_id) && ( $main_id > 0 )){
+						$dataHuman[] = array();
 
-						$dataHuman = array();
 						foreach ($roll->human as $human) {
-							if($human->contractor !=""){
-							DB::table('mustrolls_human')->insert(array(
+							if($human->contractor != ""){
+								$workers = $human->number_of_workers;
+								$total_wage = $human->total_wage;
+								$wageHr = $human->wageHr;
+								$workHr = $human->workHr;
+								$wage_per_person = $human->wage_per_person;
+								$contractor = $human->contractor;
+								$skill = $human->skill;
+								$language = $human->language;
+								$number_of_OT = $human->ot_number;
+
+							  $dataHuman[] = array(
 									"mustrolls_main_id" => $main_id,
-									"number_of_workers" => $human->number_of_workers,
-									"total_wage" => $human->total_wage,
-									"wageHr" => $human->wageHr,
-									"workHr" => $human->workHr,
-									"wage_per_person" => $human->wage_per_person,
-									"contractor" => $human->contractor,
-									"skill" => $human->skill,
-									"language" => $human->language,
-									"number_of_OT" => $human->ot_number
-								));
+									"number_of_workers" => $workers,
+									"total_wage" => $total_wage,
+									"wageHr" => $wageHr,
+									"workHr" => $workHr,
+									"wage_per_person" => $wage_per_person,
+									"contractor" => $contractor,
+									"skill" => $skill,
+									"language" => $language,
+									"number_of_OT" => $number_of_OT
+								 );
 							}
 				    }
 
-				    //DB::table('mustrolls_human')->insert($dataHuman);
+				    DB::table('mustrolls_human')->insert($dataHuman);
 
 
 
