@@ -65,10 +65,10 @@ class HomeController extends BaseController {
 
 					if(isset($main_id) && ( $main_id > 0 )){
 
-						$dataHuman = [];
+						$dataHuman = array();
 						foreach ($roll->human as $key => $human) {
 							if($human->contractor !=""){
-								$dataHuman[] = [
+								array_push($dataHuman, array (
 									'mustrolls_main_id' => $main_id,
 									'number_of_workers' => $human->number_of_workers,
 									'total_wage' => $human->total_wage,
@@ -79,7 +79,7 @@ class HomeController extends BaseController {
 									'skill' => $human->skill,
 									'language' =>$human->language,
 									'number_of_OT'=>$human->ot_number
-								];
+								));
 							}
 				    }
 
